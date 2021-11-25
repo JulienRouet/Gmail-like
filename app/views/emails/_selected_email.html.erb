@@ -1,0 +1,21 @@
+<div class='card-body px-3', id="deleted">
+  <p class='h2 card-title pt-3'><%= email.object %></p>
+
+  <p class="card-text px-3"><%= email.body %></p>
+  <div class="card-body pt-0 px-5">
+    <%= link_to(
+      'Marquer comme non-lu',
+      email_path(email.id),
+      method: :patch,
+      remote: true,
+      class: 'btn btn-warning'
+    ) %>
+    <%= link_to(
+      'Supprimer',
+      email_path(email.id),
+      method: :delete,
+      class: 'btn btn-danger',
+      remote: true
+    ) %>
+  </div>
+</div>
