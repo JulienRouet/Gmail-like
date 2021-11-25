@@ -4,15 +4,12 @@ class EmailsController < ApplicationController
   end
 
   def create
-    @email = Email.create(object: Faker::Book.title, body: Faker::Lorem.paragraph_by_chars)
+    @email = Email.create(object: Faker::Book.title, body: Faker::Lorem.paragraph_by_chars, read: false)
 
     respond_to do |format|
       format.html {redirect_to emails_path}
       format.js { }
     end
-  end
-
-  def destroy
   end
 
   def show
@@ -24,6 +21,24 @@ class EmailsController < ApplicationController
     end
   end
 
+  def destroy
+    @email = Email.find(params[:id])
+    @email.destroy
+
+    respond_to do |format|
+      format.html {redirect_to root_path}
+      format.js {}
+    end
+  end
+
   def update
+    @email = Email.find(params[:id])
+    @email.read = false
+    @email.save
+
+    respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js {}
+    end
   end
 end

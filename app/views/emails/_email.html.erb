@@ -1,3 +1,6 @@
+<% if email.read == false %>
+
 <div class="row">
     <p><%= link_to "#{email.object}", email_path(email.id), remote: true %></p>
 </div>
+<% end %>
